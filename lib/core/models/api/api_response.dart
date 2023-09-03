@@ -1,11 +1,13 @@
 class APIResponse {
   final bool error;
   final String message;
+  final int? statusCode;
   Map<String, dynamic>? data;
 
   APIResponse({
     required this.error,
     required this.message,
+    required this.statusCode,
     required this.data,
   });
 
@@ -13,6 +15,7 @@ class APIResponse {
     return APIResponse(
       error: false,
       message: json['message'],
+      statusCode: json['statusCode'] ?? statusCode,
       data: json['data'],
     );
   }
@@ -20,6 +23,11 @@ class APIResponse {
   factory APIResponse.failure(String message, int code) => APIResponse(
         error: true,
         message: message,
+        statusCode: code,
         data: null,
       );
 }
+
+// abstract class Serializable {
+//   Map<String, dynamic> toJson();
+// }

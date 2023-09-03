@@ -17,15 +17,15 @@ class BaseApi implements BaseAPIImpl {
   }
 
   @override
-  Future<APIResponse> delete(
-      String url, Map<String, dynamic>? param, bool? useToken) {
+  Future<APIResponse> delete(String url,
+      {Map<String, dynamic>? param, bool? useToken}) {
     // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
-  Future<APIResponse> get(
-      String url, Map<String, dynamic>? param, bool? useToken) async {
+  Future<APIResponse> get(String url,
+      {Map<String, dynamic>? param, bool? useToken}) async {
     try {
       final result = await _dio?.get(
         url,
@@ -46,8 +46,8 @@ class BaseApi implements BaseAPIImpl {
   }
 
   @override
-  Future<APIResponse> post(
-      String url, Map<String, dynamic>? param, data, bool? useToken) async {
+  Future<APIResponse> post(String url,
+      {Map<String, dynamic>? param, data, bool? useToken}) async {
     try {
       final result = await _dio?.post(
         url,
@@ -57,7 +57,7 @@ class BaseApi implements BaseAPIImpl {
       );
       return _parseResponse(result);
     } on DioException catch (e) {
-      debugPrint('Error: get');
+      debugPrint('Error: post');
       debugPrint('STATUS: ${e.response?.statusCode}');
       debugPrint('DATA: ${e.response?.data}');
       debugPrint('HEADERS: ${e.response?.headers}');
@@ -69,8 +69,8 @@ class BaseApi implements BaseAPIImpl {
   }
 
   @override
-  Future<APIResponse> update(
-      String url, Map<String, dynamic>? param, data, bool? useToken) {
+  Future<APIResponse> update(String url,
+      {Map<String, dynamic>? param, data, bool? useToken}) {
     // TODO: implement update
     throw UnimplementedError();
   }
